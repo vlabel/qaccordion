@@ -27,5 +27,26 @@ QAccordion::QAccordion(QAccordionPrivate &dd, QWidget *parent)
 }
 
 
+/**
+ * @brief set Rise Mode 
+ *
+ * @param mode - [in] QAccordion::RizeMode 
+ */
+void QAccordion::setRiseMode(QAccordion::RiseMode mode)
+{
+	Q_D(QAccordion);
+	d->setRiseMode(mode);
+}
+
+/**
+ * @brief get Rise Mode 
+ *
+ * @return QAccordion::RizeMode 
+ */
+QAccordion::RiseMode QAccordion::riseMode(void)
+{
+	Q_D(QAccordion);		
+	return d->riseMode();
+}
 
 

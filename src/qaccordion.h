@@ -16,7 +16,11 @@ class QAccordionPrivate;
 class QAccordion : public QWidget {
 	Q_OBJECT;		
 public:
+   	enum RiseMode { OneField ,FewFields };
+
 	explicit QAccordion(QWidget *parent);
+	void setRiseMode(QAccordion::RiseMode);
+	QAccordion::RiseMode riseMode(void);
 protected:
 	QAccordionPrivate * const d_ptr;
 	QAccordion(QAccordionPrivate &d,QWidget *parent);

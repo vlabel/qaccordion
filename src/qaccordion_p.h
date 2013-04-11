@@ -15,12 +15,15 @@
 
 class QAccordionPrivate : public QWidget {
 	Q_DECLARE_PUBLIC(QAccordion);
+public:
+	 void setRiseMode(QAccordion::RiseMode mode);
+	 QAccordion::RiseMode riseMode(void);
 protected:
 	QAccordionPrivate();
 	virtual ~QAccordionPrivate();
 private:
 	QAccordion *q_ptr;
-	int i;
+	QAccordion::RiseMode m_riseMode; /* type for rising fields */
 };
 
 
