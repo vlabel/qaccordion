@@ -4,7 +4,7 @@
 
 #include <QMainWindow>
 #include "qaccordion.h"
-
+#include <QHBoxLayout>
 
 
 class MainWindow : public QMainWindow {
@@ -14,6 +14,7 @@ public:
 public slots:
 private:
 	QAccordion m_accordion;
+	QHBoxLayout *m_mainLayout;
 };
 
 #endif // MAINWINDOW_H
