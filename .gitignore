@@ -11,7 +11,7 @@
 
 *.dll
 *.dylib
-./examples/qaccordion
+qaccordion
 
 # Qt-es
 ./objects
