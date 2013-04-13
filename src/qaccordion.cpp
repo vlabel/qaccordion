@@ -23,7 +23,7 @@ QAccordion::QAccordion(QAccordionPrivate &dd, QWidget *parent)
 		       :QWidget(parent)
 			   ,d_ptr(&dd)
 { 
-
+;
 }
 
 
@@ -48,5 +48,39 @@ QAccordion::RiseMode QAccordion::riseMode(void)
 	Q_D(QAccordion);		
 	return d->riseMode();
 }
+
+
+/**
+ * @brief get m_splittersEnabled flag
+ *
+ * @return bool
+ */
+bool QAccordion::isSplittersEnabled(void) 
+{
+	Q_D(QAccordion);		
+	return d->isSplittersEnabled();
+}
+
+/**
+ * @brief set m_splittersEnabled flag
+ *
+ * @param flag - [in] bool
+ */
+void QAccordion::setSplittersEnabled(bool flag)
+{
+	Q_D(QAccordion);
+	d->setSplittersEnabled(flag);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 

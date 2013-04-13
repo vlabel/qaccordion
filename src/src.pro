@@ -20,6 +20,7 @@ INCLUDEPATH += $$INSTALL_PATH_INCLUDE
 
 # Input
 HEADERS += qaccordion.h \
-		   qaccordion_p.h 	
+		   qaccordion_p.h 
 SOURCES += qaccordion.cpp  \
-		   qaccordion_p.cpp
+		   qaccordion_p.cpp \
+		   qaccordionitem.cpp

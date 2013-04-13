@@ -47,3 +47,26 @@ QAccordion::RiseMode QAccordionPrivate::riseMode(void)
 }
 
 
+
+/**
+ * @brief get m_splittersEnabled flag
+ *
+ * @return bool
+ */
+bool QAccordionPrivate::isSplittersEnabled(void)  
+{
+	return m_splittersEnabled;
+}
+
+/**
+ * @brief set m_splittersEnabled flag
+ *
+ * @param flag - [in] bool
+ */
+void QAccordionPrivate::setSplittersEnabled(bool flag)
+{
+	m_splittersEnabled = flag;
+}
+
+
+
