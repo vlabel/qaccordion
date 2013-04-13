@@ -11,7 +11,7 @@ TEMPLATE = subdirs
 
 
 SUBDIRS += \
-	src 
-#	examples \
+	src \
+	examples 
 
 

@@ -76,7 +76,11 @@ void QAccordion::setSplittersEnabled(bool flag)
 
 
 
-
+void QAccordion::addItem(QAccordionItem *item) 
+{
+	Q_D(QAccordion);
+	d->addItem(item);
+}
 
 
 

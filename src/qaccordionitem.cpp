@@ -5,9 +5,13 @@
 * This library is free software
 **************************************************************/
 
-
 #include "qaccordion.h"
 #include "qaccordion_p.h"
+#include "qaccordionitem.h"
+
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QLineEdit>
 
 
 /**
@@ -17,6 +21,7 @@
  */
 QAccordionItem::QAccordionItem(const QString &header)
 {
+		createInternals();
 		m_headerLine = header;
 }
 
@@ -27,7 +32,7 @@ QAccordionItem::QAccordionItem(const QString &header)
  * @param other - [in] QAccordionItem
  */
 QAccordionItem::QAccordionItem(const QAccordionItem &other)
-		:QObject(NULL)
+		:QFrame(NULL)
 { 
 	Q_UNUSED(other);
 }
@@ -45,7 +50,7 @@ QAccordionItem::~QAccordionItem()
  */
 void QAccordionItem::setHeaderLine(const QString &str)
 {
-	m_headerLine = str;
+	m_headerLE->setText(str);	
 }
 
 
@@ -57,10 +62,8 @@ void QAccordionItem::setHeaderLine(const QString &str)
  */
 QString QAccordionItem::headerLine(void) const
 {
-		return m_headerLine;
+		return m_headerLE->text();
 }
-
-
 
 
 /**
@@ -74,7 +77,23 @@ void QAccordionItem::setAccordionWidget(QAccordion *wgt)
 }
 
 
+void QAccordionItem::createInternals(void)
+{
+	m_mainLayout  = new QHBoxLayout;
+	setLayout(m_mainLayout);
+	m_headerFrame = new QFrame;
+	m_headerLayout = new QVBoxLayout;
+	m_headerFrame->setLayout(m_headerLayout);
+	m_mainLayout->addWidget(m_headerFrame);
+	m_contentFrame = new QFrame;
+	m_contentLayout = new QHBoxLayout;
+	m_contentFrame->setLayout(m_contentLayout);
+	m_mainLayout->addWidget(m_contentFrame);
 
+	m_headerLE = new QLineEdit;
+	m_contentLayout->addWidget(m_headerLE);
+
+}
 
 
 

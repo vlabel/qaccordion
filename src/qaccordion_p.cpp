@@ -8,13 +8,17 @@
 
 #include "qaccordion.h"
 #include "qaccordion_p.h"
+#include "qaccordionitem.h"
 
+#include <QVBoxLayout>
 
 /**
  * @brief default ctor
  */
 QAccordionPrivate::QAccordionPrivate()
 {
+	m_mainLayout = new QVBoxLayout;	
+	setLayout(m_mainLayout);
 }
 
 
@@ -68,5 +72,11 @@ void QAccordionPrivate::setSplittersEnabled(bool flag)
 	m_splittersEnabled = flag;
 }
 
+
+void QAccordionPrivate::addItem(QAccordionItem *item) 
+{
+	m_itemsList.push_front(item);
+	m_mainLayout->addWidget(item);
+}
 
 

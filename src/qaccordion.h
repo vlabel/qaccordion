@@ -12,26 +12,7 @@
 
 class QAccordionPrivate;
 class QAccordion;
-
-
-class QAccordionItem : public QObject {
-	Q_OBJECT
-	public:
-	explicit QAccordionItem(const QString &header);
-	explicit QAccordionItem(const QAccordionItem& other);
-	virtual  ~QAccordionItem();
-	inline QAccordion* accordionWidget(void) const {return m_accWidget;}
-
-	inline void setHeaderLine(const QString & str);
-	inline	QString headerLine(void) const;
-
-	private :
-
-	void setAccordionWidget(QAccordion *acc);
-	QAccordion *m_accWidget;
-	QString m_headerLine;
-
-};
+class QAccordionItem;
 
 
 class QAccordion : public QWidget {
@@ -39,11 +20,12 @@ class QAccordion : public QWidget {
 public:
    	enum RiseMode { OneField ,FewFields };
 
-	explicit QAccordion(QWidget *parent);
+	explicit QAccordion(QWidget *parent = NULL);
 	void setRiseMode(QAccordion::RiseMode);
 	bool isSplittersEnabled(void);
 	void setSplittersEnabled(bool flag);
 	QAccordion::RiseMode riseMode(void);
+	void addItem(QAccordionItem *item);
 protected:
 	QAccordionPrivate * const d_ptr;
 	QAccordion(QAccordionPrivate &d,QWidget *parent);

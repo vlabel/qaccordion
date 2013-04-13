@@ -5,23 +5,19 @@
 # This library is free software
 ################################################################
 include(../common.pri)
-TEMPLATE = lib
+TEMPLATE = app 
 
 QT += core 
 
-CONFIG += dll
-
 TARGET = qaccordion 
 
-DESTDIR = $$INSTALL_PATH_LIB
+DESTDIR = $$INSTALL_PATH_BIN
 
 INCLUDEPATH += $$INSTALL_PATH_INCLUDE
-
+LIBS += -L$${INSTALL_PATH_LIB} \
+		-lqaccordion
 
 # Input
-HEADERS += qaccordion.h \
-		   qaccordion_p.h \
-		   qaccordionitem.h
-SOURCES += qaccordion.cpp  \
-		   qaccordion_p.cpp \
-		   qaccordionitem.cpp
+HEADERS += mainwindow.h 
+SOURCES += mainwindow.cpp  \
+		   example.cpp	

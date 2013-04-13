@@ -13,7 +13,7 @@ INSTALL_PATH_BIN       = $${ROOT_DIR}/examples
 TRANSLATE_PATH         = $${INSTALL_PATH_BIN}/translate
 INSTALL_PATH_LIB       = $${ROOT_DIR}/lib
 INSTALL_PATH_INCLUDE   = $${ROOT_DIR} \ 
-			 $${ROOT_DIR}/include
+			 $${ROOT_DIR}/src
 BUILD_PATH = ./
 ARCH = ./
 
