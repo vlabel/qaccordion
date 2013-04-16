@@ -10,12 +10,15 @@
 #include "qaccordion_p.h"
 
 
+#include <QDebug>
+
 QAccordion::QAccordion(QWidget * parent)
      :QWidget(parent)
      ,d_ptr(new QAccordionPrivate())
 {
   Q_D(QAccordion);
   d->q_ptr = this;
+  show();
 }
 
 
@@ -73,9 +76,11 @@ void QAccordion::setSplittersEnabled(bool flag)
 }
 
 
-
-
-
+/**
+ * @brief isert Item into widget
+ *
+ * @param item - [in] QAccordionItem *
+ */
 void QAccordion::addItem(QAccordionItem *item) 
 {
 	Q_D(QAccordion);

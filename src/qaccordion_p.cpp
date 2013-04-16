@@ -18,7 +18,6 @@
 QAccordionPrivate::QAccordionPrivate()
 {
 	m_mainLayout = new QVBoxLayout;	
-	setLayout(m_mainLayout);
 }
 
 
@@ -75,6 +74,8 @@ void QAccordionPrivate::setSplittersEnabled(bool flag)
 
 void QAccordionPrivate::addItem(QAccordionItem *item) 
 {
+	Q_Q(QAccordion);		
+	q->setLayout(m_mainLayout);
 	m_itemsList.push_front(item);
 	m_mainLayout->addWidget(item);
 }

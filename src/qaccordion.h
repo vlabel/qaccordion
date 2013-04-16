@@ -9,10 +9,12 @@
 
 
 #include <QWidget>
+#include "qaccordionitem.h"
+
+
 
 class QAccordionPrivate;
 class QAccordion;
-class QAccordionItem;
 
 
 class QAccordion : public QWidget {

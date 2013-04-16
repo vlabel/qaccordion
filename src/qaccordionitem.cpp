@@ -1,6 +1,6 @@
 /**************************************************************
 * QAccordion Widget Library
-* Copyright (C) 2012   Vladimir Belianin
+* Copyright (C) 2013   Vladimir Belianin
 *
 * This library is free software
 **************************************************************/
@@ -11,7 +11,9 @@
 
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include <QLineEdit>
+#include <QLabel>
+#include <QDebug>
+#include <QPushButton>
 
 
 /**
@@ -19,10 +21,17 @@
  *
  * @param header - [in] QString - headerLine
  */
-QAccordionItem::QAccordionItem(const QString &header)
+QAccordionItem::QAccordionItem(const QString &header):
+		QFrame(NULL)
 {
+		m_collapseIcon.addFile(QString(":/collapse.png"),
+                					QSize(ICONSIZE,ICONSIZE),QIcon::Normal);
+		m_expandIcon.addFile(QString(":/expand.png"),
+                					QSize(ICONSIZE,ICONSIZE),QIcon::Normal);
 		createInternals();
 		m_headerLine = header;
+		m_headerLabel->setText(header);
+		show();
 }
 
 
@@ -50,7 +59,7 @@ QAccordionItem::~QAccordionItem()
  */
 void QAccordionItem::setHeaderLine(const QString &str)
 {
-	m_headerLE->setText(str);	
+	m_headerLabel->setText(str);	
 }
 
 
@@ -62,7 +71,7 @@ void QAccordionItem::setHeaderLine(const QString &str)
  */
 QString QAccordionItem::headerLine(void) const
 {
-		return m_headerLE->text();
+		return m_headerLabel->text();
 }
 
 
@@ -77,25 +86,52 @@ void QAccordionItem::setAccordionWidget(QAccordion *wgt)
 }
 
 
+/**
+ * @brief create all objs and initialise them
+ */
 void QAccordionItem::createInternals(void)
 {
-	m_mainLayout  = new QHBoxLayout;
+	m_mainLayout  = new QVBoxLayout;
 	setLayout(m_mainLayout);
 	m_headerFrame = new QFrame;
-	m_headerLayout = new QVBoxLayout;
+	m_headerLayout = new QHBoxLayout;
 	m_headerFrame->setLayout(m_headerLayout);
+	setupFrames(m_headerFrame);
+
 	m_mainLayout->addWidget(m_headerFrame);
 	m_contentFrame = new QFrame;
 	m_contentLayout = new QHBoxLayout;
 	m_contentFrame->setLayout(m_contentLayout);
+	setupFrames(m_contentFrame);
+
 	m_mainLayout->addWidget(m_contentFrame);
 
-	m_headerLE = new QLineEdit;
-	m_contentLayout->addWidget(m_headerLE);
+	m_headerLabel = new QLabel;
+	m_headerLayout->addWidget(m_headerLabel);
+	/* create button */
+	m_collapseButton = new QPushButton;
+	m_collapseButton->setMinimumSize(QSize(ICONSIZE,ICONSIZE));
+	m_collapseButton->setMaximumSize(QSize(ICONSIZE,ICONSIZE));
+
+	m_headerLayout->addWidget(m_collapseButton);
+	m_collapseButton->setIcon(m_collapseIcon);
+
+
 
 }
 
 
+/**
+ * @brief set some options for QFrame
+ *
+ * @param fr - [in] QFrame*
+ */
+void QAccordionItem::setupFrames(QFrame *fr)
+{
+	fr->setFrameShape(QFrame::Box);
+	fr->setFrameShadow(QFrame::Raised);
+	fr->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Maximum);
+}
 
 
 

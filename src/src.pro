@@ -25,3 +25,6 @@ HEADERS += qaccordion.h \
 SOURCES += qaccordion.cpp  \
 		   qaccordion_p.cpp \
 		   qaccordionitem.cpp
+
+RESOURCES += \
+    resources.qrc
