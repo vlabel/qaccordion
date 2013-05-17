@@ -31,6 +31,8 @@ QAccordionItem::QAccordionItem(const QString &header):
 		createInternals();
 		m_headerLine = header;
 		m_headerLabel->setText(header);
+		m_widget = NULL;
+		m_collapsedFlag = false;
 		show();
 }
 
@@ -92,7 +94,9 @@ void QAccordionItem::setAccordionWidget(QAccordion *wgt)
 void QAccordionItem::createInternals(void)
 {
 	m_mainLayout  = new QVBoxLayout;
+	setMargins(m_mainLayout);
 	setLayout(m_mainLayout);
+	setupFrames(this);
 	m_headerFrame = new QFrame;
 	m_headerLayout = new QHBoxLayout;
 	m_headerFrame->setLayout(m_headerLayout);
@@ -115,8 +119,7 @@ void QAccordionItem::createInternals(void)
 
 	m_headerLayout->addWidget(m_collapseButton);
 	m_collapseButton->setIcon(m_collapseIcon);
-
-
+	connect(m_collapseButton,SIGNAL(clicked()),this,SLOT(collapseClicked()));
 
 }
 
@@ -133,8 +136,44 @@ void QAccordionItem::setupFrames(QFrame *fr)
 	fr->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Maximum);
 }
 
+/**
+ * @brief set inner widget, 
+ * @param wgt - [in] QWidget* wgt
+ */
+void QAccordionItem::setWidget(QWidget *wgt)
+{
+	if(m_widget) m_widget->setParent(NULL);
+	m_widget = wgt;
+	m_contentLayout->addWidget(wgt);
+}
+
+QWidget *QAccordionItem::widget(void)
+{
+	return m_widget;
+}
+
+/**
+ * @brief slot for collapse button 
+ */
+void QAccordionItem::collapseClicked(void)
+{
+	if (m_collapsedFlag) {
+		m_collapseButton->setIcon(m_collapseIcon);
+		m_contentFrame->setMaximumHeight(QWIDGETSIZE_MAX);
+	} else {
+		m_collapseButton->setIcon(m_expandIcon);
+		m_contentFrame->setMaximumHeight(0);
+	}
+	m_collapsedFlag=!m_collapsedFlag;	
+	emit collapseTriggered();
+}
 
 
+void QAccordionItem::setMargins(QLayout *lay,int mr)
+{
+	lay->setContentsMargins(mr,mr,mr,mr);
+	lay->setSpacing(mr);
+}
 
 
 
